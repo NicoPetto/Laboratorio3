@@ -29,4 +29,9 @@ DTPropietario *Propietario::creoDTPropietario() {
     p -> setNickname(nick);
     p -> setEmail(email);
     p -> setNombre(nombre);
+    return p;
+}
+
+void Propietario::agregoInmueble(Inmueble * inmueble) {
+    inmueblesPropietario.insert(inmueble);
 }

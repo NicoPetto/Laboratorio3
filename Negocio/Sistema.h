@@ -20,8 +20,8 @@ public:
     virtual ~Sistema();
     static Sistema* getInstancia();
 
-    set<Usuario*> listaUsuarios;
-    set<Inmueble*> listaInmuebles;
+    set<Usuario*> usuariosSistema;
+    set<Inmueble*> inmueblesSistema;
 
     //AltaImueble
     set<DTPropietario*> obtenerPropietarios();

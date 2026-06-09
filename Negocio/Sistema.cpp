@@ -3,6 +3,8 @@
 //
 
 #include "Sistema.h"
+
+#include <optional>
 #include <set>
 
 #include "DTInmueble.h"
@@ -19,6 +21,28 @@ Sistema* Sistema::instancia = nullptr;
 
 Sistema::Sistema() {
 
+    Usuario * p1 = new Propietario("Brou", "099927270");
+    Usuario * p2 = new Propietario("Santander", "098765432");
+    Usuario * p3 = new Cliente("Pettorossi", "51457002");
+    Usuario * p4 = new Propietario("Caritas", "091234567");
+    p1->setNickname("1");
+    p1->setNombre("Propietario1");
+    p1->setEmail("p1@gmail.com");
+    p2->setNickname("2");
+    p2->setNombre("Propietario2");
+    p2->setEmail("p2@gmail.com");
+    p3->setNickname("3");
+    p3->setNombre("Cliente3");
+    p3->setEmail("c3@gmail.com");
+    p4->setNickname("4");
+    p4->setNombre("Propietario4");
+    p4->setEmail("p4@gmail.com");
+
+    usuariosSistema.insert(p1);
+    usuariosSistema.insert(p2);
+    usuariosSistema.insert(p3);
+    usuariosSistema.insert(p4);
+
 }
 
 Sistema::~Sistema() {
@@ -27,45 +51,74 @@ Sistema::~Sistema() {
 
 //AltaImueble
 set<DTPropietario*> Sistema::obtenerPropietarios() {
-    set <DTPropietario*> propietarios;
-    DTPropietario * p1 = new DTPropietario("Brou", "099927270");
-    DTPropietario * p2 = new DTPropietario("Santander", "098765432");
-    DTPropietario * p3 = new DTPropietario("Caritas", "091234567");
-    p1->setNickname("1");
-    p1->setNombre("Propietario1");
-    p1->setEmail("p1@gmail.com");
-    p2->setNickname("2");
-    p2->setNombre("Propietario2");
-    p2->setEmail("p2@gmail.com");
-    p3->setNickname("3");
-    p3->setNombre("Propietario3");
-    p3->setEmail("p3@gmail.com");
 
-    DTPropietario * dt;
+    set<DTPropietario*> propietarios;
 
-    for (Usuario* u : listaUsuarios) {
-        DTPropietario* p = dynamic_cast<DTPropietario*>(u);
 
-        if (p != nullptr)
-            propietarios.insert(p);
+    for (Usuario* u : usuariosSistema) {
+        Propietario* p = dynamic_cast<Propietario*>(u);
+        if (p != nullptr) {
+            DTPropietario* dt = p->creoDTPropietario();
+            propietarios.insert(dt);
+        }
     }
-
     return propietarios;
+
+
 };
 
-// void Sistema::seleccionarPropietario(DTPropietario* propietario) {
-//     cout << "Se seleccionó un propietario con nick: ";
-//     propietario->getNickname();
-// };
 
 int Sistema::registroInmueble(DTInmueble* inmueble, DTPropietario* propietario) {
-    int idInmueble = 0;
+    static int codigo = 0;
+
+    Inmueble * i = nullptr;
+
+    string nick = propietario->getNickname();
+
+    for (Usuario* u : usuariosSistema) {
+
+        Propietario* p = dynamic_cast<Propietario*>(u);
+
+        if (p != nullptr && p->getNickname() == nick) {
+
+            if (DTCasa* casa = dynamic_cast<DTCasa*>(inmueble)) {
+                i = new Casa(casa->getPH(), casa->getTipoTecho());
+                i->setDireccion(inmueble->getDireccion());
+                i->setNumeroPuerta(inmueble->getNumeroPuerta());
+                i->setSuperficie(inmueble->getSuperficie());
+                i->setAnioConstruccion(inmueble->getAnioConstruccion());
+
+
+            }
+
+            else if (DTApartamento* apartamento = dynamic_cast<DTApartamento*>(inmueble)) {
+                i = new Apartamento(apartamento->getNumeroPiso(), apartamento->getAscensor(), apartamento->getGastosComunes());
+
+                i->setDireccion(inmueble->getDireccion());
+                i->setNumeroPuerta(inmueble->getNumeroPuerta());
+                i->setSuperficie(inmueble->getSuperficie());
+                i->setAnioConstruccion(inmueble->getAnioConstruccion());
+
+            }
+            p->agregoInmueble(i);
+            break;
+        }
+
+    }
+
+    if (i == nullptr) {
+        return -1;
+    }
+
+
+    codigo++;
+    i->setCodigo(codigo);
+    inmueblesSistema.insert(i);
     cout << "Se registró un inmueble con datos: " << endl;
-    cout << "Direccion: " << inmueble->getDireccion() << endl;
-    cout << "Superficie: "<< inmueble->getSuperficie() << endl;
+    cout << "Direccion: " << i->getDireccion() << endl;
+    cout << "Superficie: "<< i->getSuperficie() << endl;
     cout << " perteneciente al propietario " << propietario->getNickname() << endl;
-    inmueble->setCodigo(idInmueble+1);
-    return inmueble->getCodigo();
+    return i->getCodigo();
 };
 
 

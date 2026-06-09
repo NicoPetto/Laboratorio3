@@ -17,7 +17,6 @@ public:
     DTPropietario(string cuentaBancaria, string telefono);
     string getCuentaBancaria();
     string getTelefonoP();
-    DTPropietario * creoDTPropietario();
 };
 
 

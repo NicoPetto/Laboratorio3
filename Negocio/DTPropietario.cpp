@@ -21,12 +21,3 @@ string DTPropietario::getTelefonoP() {
     return this->telefonoP;
 }
 
-DTPropietario *DTPropietario::creoDTPropietario() {
-    string nick = getNickname();
-    string nombre = getNombre();
-    string email = getEmail();
-    DTPropietario * p = new DTPropietario();
-    p -> setNickname(nick);
-    p -> setEmail(email);
-    p -> setNombre(nombre);
-}

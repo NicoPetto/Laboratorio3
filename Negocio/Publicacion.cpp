@@ -4,6 +4,8 @@
 
 #include "Publicacion.h"
 
+#include "DTPropietario.h"
+
 Publicacion::Publicacion() {
 }
 
