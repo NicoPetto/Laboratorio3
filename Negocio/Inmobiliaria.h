@@ -4,6 +4,7 @@
 
 #ifndef LAB_2_INMOBILIARIA_H
 #define LAB_2_INMOBILIARIA_H
+#include "DTInmobiliaria.h"
 #include "Usuario.h"
 
 
@@ -18,6 +19,7 @@ public:
     string getDireccion();
     string getURL();
     string getTelefono();
+    DTInmobiliaria * creoDTInmobiliaria();
 };
 
 

@@ -26,3 +26,12 @@ string Inmobiliaria::getURL() {
 string Inmobiliaria::getTelefono() {
     return this->telefono;
 }
+
+DTInmobiliaria *Inmobiliaria::creoDTInmobiliaria() {
+    string nick = getNickname();
+    string nombre = getNombre();
+    DTInmobiliaria * i = new DTInmobiliaria();
+    i -> setNickname(nick);
+    i -> setNombre(nombre);
+    return i;
+}

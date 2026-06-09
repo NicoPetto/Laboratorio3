@@ -21,6 +21,7 @@ public:
     static Sistema* getInstancia();
 
     set<Usuario*> usuariosSistema;
+    set<Inmobiliaria*> inmobiliariasSistema;
     set<Inmueble*> inmueblesSistema;
 
     //AltaImueble

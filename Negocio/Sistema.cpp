@@ -43,6 +43,17 @@ Sistema::Sistema() {
     usuariosSistema.insert(p3);
     usuariosSistema.insert(p4);
 
+    Inmobiliaria * i1 = new Inmobiliaria("DirInm1", "www.inm1.com", "111111111");
+    i1->setNickname("11");
+    i1->setNombre("Inm1");
+    Inmobiliaria * i2 = new Inmobiliaria("DirInm2", "www.inm2.com", "222222222");
+    i2->setNickname("22");
+    i2->setNombre("Inm2");
+
+    inmobiliariasSistema.insert(i1);
+    inmobiliariasSistema.insert(i2);
+
+
 }
 
 Sistema::~Sistema() {
@@ -125,14 +136,15 @@ int Sistema::registroInmueble(DTInmueble* inmueble, DTPropietario* propietario) 
 //AltaPublicacion
 set<DTInmobiliaria*> Sistema::listarInmobiliarias() {
     set<DTInmobiliaria*> inmobiliarias;
-    DTInmobiliaria * i1 = new DTInmobiliaria("DirInm1", "www.inm1.com", "111111111");
-    i1->setNickname("11");
-    i1->setNombre("Inm1");
-    DTInmobiliaria * i2 = new DTInmobiliaria("DirInm2", "www.inm2.com", "222222222");
-    i2->setNickname("22");
-    i2->setNombre("Inm2");
-    inmobiliarias.insert(i1);
-    inmobiliarias.insert(i2);
+
+
+    for (Usuario* u : inmobiliariasSistema) {
+        Inmobiliaria* i = dynamic_cast<Inmobiliaria*>(u);
+        if (i != nullptr) {
+            DTInmobiliaria* dt = i->creoDTInmobiliaria();
+            inmobiliarias.insert(dt);
+        }
+    }
     return inmobiliarias;
 };
 
