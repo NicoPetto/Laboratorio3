@@ -33,7 +33,7 @@ void PantallaAltaPublicacion::mostrarPantallaAltaPublicacion() {
     cin >> textoI;
     cout << "Ingrese un precio: ";
     cin >> precioI;
-    DTPublicacion * publicacion = this->sistema->finalizarAlta(inmuebleSeleccionado, textoI, precioI);
+    //DTPublicacion * publicacion = this->sistema->finalizarAlta(inmuebleSeleccionado, textoI, precioI);
 
 }
 

@@ -3,6 +3,7 @@
 //
 
 #include "Inmobiliaria.h"
+#include "Administra.h"
 
 Inmobiliaria::Inmobiliaria() {
 
@@ -27,6 +28,10 @@ string Inmobiliaria::getTelefono() {
     return this->telefono;
 }
 
+set<Administra*> Inmobiliaria::getAdministracion() {
+    return this->listaAdministraciones;
+}
+
 DTInmobiliaria *Inmobiliaria::creoDTInmobiliaria() {
     string nick = getNickname();
     string nombre = getNombre();
@@ -34,4 +39,22 @@ DTInmobiliaria *Inmobiliaria::creoDTInmobiliaria() {
     i -> setNickname(nick);
     i -> setNombre(nombre);
     return i;
+}
+
+set<DTInmuebleAdministrado*> Inmobiliaria::detallesAdministracion() {
+
+    set<DTInmuebleAdministrado*> resultado;
+
+    for (Administra* a :listaAdministraciones) {
+
+        DTInmuebleAdministrado* dt = a->obtenerAdministracion();
+
+        if (dt != nullptr) {
+            resultado.insert(dt);
+        }
+    }
+
+
+    return resultado;
+
 }

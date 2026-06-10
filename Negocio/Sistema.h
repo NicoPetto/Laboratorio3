@@ -23,6 +23,7 @@ public:
     set<Usuario*> usuariosSistema;
     set<Inmobiliaria*> inmobiliariasSistema;
     set<Inmueble*> inmueblesSistema;
+    set<DTInmuebleAdministrado *> inmueblesAdministradosSistema;
 
     //AltaImueble
     set<DTPropietario*> obtenerPropietarios();

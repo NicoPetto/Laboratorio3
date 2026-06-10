@@ -39,6 +39,10 @@ int Inmueble::getSuperficie() {
 int Inmueble::getAnioConstruccion() {
     return this->AnioConstruccion;
 }
+
+set<Administra*>  Inmueble::getAdministraciones() {
+    return this->listaAdministraciones;
+}
 void Inmueble::setCodigo(int codigo) {
     this->codigo = codigo;
 }
@@ -53,4 +57,17 @@ void Inmueble::setSuperficie(int superficie) {
 }
 void Inmueble::setAnioConstruccion(int AnioConstruccion) {
     this->AnioConstruccion = AnioConstruccion;
+}
+Propietario * Inmueble::getPropietario() {
+    return this->propietario;
+}
+
+
+DTInmuebleAdministrado * Inmueble::creoDTInmuebleAdministrado() {
+
+    int codigo = this->getCodigo();
+    string direccion = this->getDireccion();
+    string nombre = this->propietario->getNombre();
+    DTInmuebleAdministrado * InAdm = new DTInmuebleAdministrado(codigo, direccion, nombre);
+    return InAdm;
 }

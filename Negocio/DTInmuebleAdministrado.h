@@ -6,24 +6,27 @@
 #define LAB_2_DTINMUEBLEADMINISTRADO_H
 
 #include <iostream>
+
+#include "Propietario.h"
 using namespace std;
 
-#include "DTFecha.h"
+class Propietario;
+
 
 class DTInmuebleAdministrado {
 private:
     int codigo;
     string direccion;
-    DTFecha fecha;
+    Propietario * propietario;
 public:
     DTInmuebleAdministrado();
-    DTInmuebleAdministrado(int codigo, string direccion, DTFecha fecha);
+    DTInmuebleAdministrado(int codigo, string direccion, string);
     int getCodigo();
     string getDireccion();
-    DTFecha getFecha();
+    Propietario * getPropietario();
     void setCodigo(int codigo);
     void setDireccion(string direccion);
-    void setFecha(DTFecha fecha);
+
 };
 
 

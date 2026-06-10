@@ -6,7 +6,15 @@
 #define LAB_2_INMUEBLE_H
 #include <string>
 
+#include "Administra.h"
+#include "DTInmuebleAdministrado.h"
+#include "Propietario.h"
+
 using namespace std;
+
+class Administra;
+class Propietario;
+class DTInmuebleAdministrado;
 
 
 class Inmueble {
@@ -16,6 +24,8 @@ protected:
     int numeroPuerta;
     int superficie;
     int AnioConstruccion;
+    set<Administra*>  listaAdministraciones;
+    Propietario * propietario;
 
 public:
     Inmueble();
@@ -26,11 +36,14 @@ public:
     int getNumeroPuerta();
     int getSuperficie();
     int getAnioConstruccion();
+    Propietario * getPropietario();
+    set<Administra*>  getAdministraciones();
     void setCodigo(int codigo);
     void setDireccion(string direccion);
     void setNumeroPuerta(int numeroPuerta);
     void setSuperficie(int superficie);
     void setAnioConstruccion(int AnioConstruccion);
+    DTInmuebleAdministrado * creoDTInmuebleAdministrado();
 
 };
 

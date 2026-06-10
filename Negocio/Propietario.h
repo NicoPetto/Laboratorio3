@@ -11,6 +11,7 @@
 #include "DTPropietario.h"
 #include "Inmueble.h"
 
+class Inmueble;
 
 class Propietario : public Usuario {
 private:

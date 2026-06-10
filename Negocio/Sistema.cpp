@@ -54,6 +54,7 @@ Sistema::Sistema() {
     inmobiliariasSistema.insert(i2);
 
 
+
 }
 
 Sistema::~Sistema() {
@@ -149,17 +150,18 @@ set<DTInmobiliaria*> Sistema::listarInmobiliarias() {
 };
 
 set<DTInmuebleAdministrado*> Sistema::obtenerInmueblesAdministrados(DTInmobiliaria * inmobiliaria) {
-    set<DTInmuebleAdministrado*> inmueblesAdministrados;
-    DTFecha fecha = DTFecha(1111,11,11);
-    if (inmobiliaria->getNickname() == "11") {
-        DTInmuebleAdministrado * ia1 = new DTInmuebleAdministrado(1, "dirInmAdm1", fecha);
-        inmueblesAdministrados.insert(ia1);
-    } else if (inmobiliaria->getNickname() == "22") {
-        DTInmuebleAdministrado * ia2 = new DTInmuebleAdministrado(2, "dirInmAdm2", fecha);
-        inmueblesAdministrados.insert(ia2);
-    }
+    string nick = inmobiliaria->getNickname();
 
-    return inmueblesAdministrados;
+    for (Usuario* u : usuariosSistema) {
+
+        Inmobiliaria* i = dynamic_cast<Inmobiliaria*>(u);
+
+        if (i != nullptr && i->getNickname() == nick) {
+            return i->detallesAdministracion();
+        }
+
+    }
+    return {};
 };
 
 DTPublicacion* Sistema::finalizarAlta(DTInmuebleAdministrado * inmuebleAdministrado, string texto, int precio) {

@@ -52,6 +52,8 @@ add_executable(Lab_3 main.cpp
         Negocio/DTApartamento.h
         Negocio/DTApartamento.cpp
         Negocio/DTCasa.cpp
+        Negocio/Administra.cpp
+        Negocio/Administra.h
 
 
 )
