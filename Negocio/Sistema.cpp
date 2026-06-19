@@ -4,8 +4,9 @@
 
 #include "Sistema.h"
 
-#include <optional>
+#include <map>
 #include <set>
+
 
 #include "DTInmueble.h"
 #include "DTPropietario.h"
@@ -20,6 +21,7 @@
 Sistema* Sistema::instancia = nullptr;
 
 Sistema::Sistema() {
+
 
     Usuario * p1 = new Propietario("Brou", "099927270");
     Usuario * p2 = new Propietario("Santander", "098765432");
@@ -38,10 +40,11 @@ Sistema::Sistema() {
     p4->setNombre("Propietario4");
     p4->setEmail("p4@gmail.com");
 
-    usuariosSistema.insert(p1);
-    usuariosSistema.insert(p2);
-    usuariosSistema.insert(p3);
-    usuariosSistema.insert(p4);
+    usuariosSistema[p1->getEmail()] = p1;
+    usuariosSistema[p2->getEmail()] = p2;
+    usuariosSistema[p3->getEmail()] = p3;
+    usuariosSistema[p4->getEmail()] = p4;
+
 
     Inmobiliaria * i1 = new Inmobiliaria("DirInm1", "www.inm1.com", "111111111");
     i1->setNickname("11");
@@ -64,18 +67,20 @@ Sistema::~Sistema() {
 //AltaImueble
 set<DTPropietario*> Sistema::obtenerPropietarios() {
 
+
     set<DTPropietario*> propietarios;
 
+    for (auto par : usuariosSistema) {
+        Usuario* u = par.second;
 
-    for (Usuario* u : usuariosSistema) {
         Propietario* p = dynamic_cast<Propietario*>(u);
+
         if (p != nullptr) {
-            DTPropietario* dt = p->creoDTPropietario();
-            propietarios.insert(dt);
+            propietarios.insert(p->creoDTPropietario());
         }
     }
-    return propietarios;
 
+    return propietarios;
 
 };
 
@@ -87,7 +92,8 @@ int Sistema::registroInmueble(DTInmueble* inmueble, DTPropietario* propietario) 
 
     string nick = propietario->getNickname();
 
-    for (Usuario* u : usuariosSistema) {
+    for (auto par : usuariosSistema) {
+        Usuario* u = par.second;
 
         Propietario* p = dynamic_cast<Propietario*>(u);
 
@@ -112,7 +118,7 @@ int Sistema::registroInmueble(DTInmueble* inmueble, DTPropietario* propietario) 
                 i->setAnioConstruccion(inmueble->getAnioConstruccion());
 
             }
-            p->agregoInmueble(i);
+            p->agregarInmueble(i);
             break;
         }
 
@@ -126,10 +132,6 @@ int Sistema::registroInmueble(DTInmueble* inmueble, DTPropietario* propietario) 
     codigo++;
     i->setCodigo(codigo);
     inmueblesSistema.insert(i);
-    cout << "Se registró un inmueble con datos: " << endl;
-    cout << "Direccion: " << i->getDireccion() << endl;
-    cout << "Superficie: "<< i->getSuperficie() << endl;
-    cout << " perteneciente al propietario " << propietario->getNickname() << endl;
     return i->getCodigo();
 };
 
@@ -152,7 +154,10 @@ set<DTInmobiliaria*> Sistema::listarInmobiliarias() {
 set<DTInmuebleAdministrado*> Sistema::obtenerInmueblesAdministrados(DTInmobiliaria * inmobiliaria) {
     string nick = inmobiliaria->getNickname();
 
-    for (Usuario* u : usuariosSistema) {
+        for (auto par : usuariosSistema) {
+            Usuario* u = par.second;
+
+            Propietario* p = dynamic_cast<Propietario*>(u);
 
         Inmobiliaria* i = dynamic_cast<Inmobiliaria*>(u);
 

@@ -24,7 +24,10 @@ public:
     string getCuentaBancaria();
     string getTelefonoP();
     DTPropietario * creoDTPropietario();
-    void agregoInmueble(Inmueble* inmueble);
+    set<Inmueble*> getInmuebles();
+    void agregarInmueble(Inmueble* inmueble);
+    void mostrarInmuebles();
+
 };
 
 

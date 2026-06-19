@@ -8,6 +8,7 @@
 using namespace std;
 
 #include <set>
+#include <map>
 
 
 class Sistema : public ISistema {
@@ -19,8 +20,8 @@ private:
 public:
     virtual ~Sistema();
     static Sistema* getInstancia();
-
-    set<Usuario*> usuariosSistema;
+    map <string, Usuario*> usuariosSistema;
+    // map <string, Inmobiliaria*> inmobiliariasSistema;
     set<Inmobiliaria*> inmobiliariasSistema;
     set<Inmueble*> inmueblesSistema;
     set<DTInmuebleAdministrado *> inmueblesAdministradosSistema;

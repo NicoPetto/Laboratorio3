@@ -7,11 +7,11 @@
 
 int main() {
 
-    //PantallaAltaInmueble * pantallaAltaInmueble = new PantallaAltaInmueble();
-    //pantallaAltaInmueble->mostrarPantallaAltaInmueble();
+    PantallaAltaInmueble * pantallaAltaInmueble = new PantallaAltaInmueble();
+    pantallaAltaInmueble->mostrarPantallaAltaInmueble();
 
-    PantallaAltaPublicacion * pantallaAltaPublicacion = new PantallaAltaPublicacion();
-    pantallaAltaPublicacion->mostrarPantallaAltaPublicacion();
+    //PantallaAltaPublicacion * pantallaAltaPublicacion = new PantallaAltaPublicacion();
+    //pantallaAltaPublicacion->mostrarPantallaAltaPublicacion();
 
     return 0;
 

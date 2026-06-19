@@ -32,6 +32,20 @@ DTPropietario *Propietario::creoDTPropietario() {
     return p;
 }
 
-void Propietario::agregoInmueble(Inmueble * inmueble) {
+void Propietario::agregarInmueble(Inmueble * inmueble) {
     inmueblesPropietario.insert(inmueble);
+}
+
+set<Inmueble *> Propietario::getInmuebles() {
+    return inmueblesPropietario;
+}
+
+void Propietario::mostrarInmuebles() {
+    for (Inmueble* i : inmueblesPropietario) {
+        cout << "Codigo: " << i->getCodigo() << endl;
+        cout << "Direccion: " << i->getDireccion() << endl;
+        cout << "Año construccion: " << i->getAnioConstruccion() << endl;
+        cout << "Superficie: " << i->getSuperficie() << endl;
+        cout << "Numero Puerta: " << i->getNumeroPuerta();
+    }
 }

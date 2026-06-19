@@ -26,8 +26,9 @@ void PantallaAltaInmueble::mostrarPantallaAltaInmueble() {
 
     DTInmueble* inmuebleRegistrado = ingresoDatosInmueble();
 
-    cout << "Inmueble registrado con el id: " << this->sistema->registroInmueble(inmuebleRegistrado, propietarioSeleccionado);
+    this->sistema->registroInmueble(inmuebleRegistrado, propietarioSeleccionado);
 
+    //propietarioSeleccionado->mostrarInmuebles();
 
 }
 
