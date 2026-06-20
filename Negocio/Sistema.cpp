@@ -70,8 +70,8 @@ set<DTPropietario*> Sistema::obtenerPropietarios() {
 
     set<DTPropietario*> propietarios;
 
-    for (auto par : usuariosSistema) {
-        Usuario* u = par.second;
+    for (auto prop : usuariosSistema) {
+        Usuario* u = prop.second;
 
         Propietario* p = dynamic_cast<Propietario*>(u);
 
@@ -105,20 +105,17 @@ int Sistema::registroInmueble(DTInmueble* inmueble, DTPropietario* propietario) 
                 i->setNumeroPuerta(inmueble->getNumeroPuerta());
                 i->setSuperficie(inmueble->getSuperficie());
                 i->setAnioConstruccion(inmueble->getAnioConstruccion());
-
-
             }
 
             else if (DTApartamento* apartamento = dynamic_cast<DTApartamento*>(inmueble)) {
                 i = new Apartamento(apartamento->getNumeroPiso(), apartamento->getAscensor(), apartamento->getGastosComunes());
-
                 i->setDireccion(inmueble->getDireccion());
                 i->setNumeroPuerta(inmueble->getNumeroPuerta());
                 i->setSuperficie(inmueble->getSuperficie());
                 i->setAnioConstruccion(inmueble->getAnioConstruccion());
-
             }
             p->agregarInmueble(i);
+            cout << "Cantidad luego de agregar: " << p->getInmuebles().size() << endl;
             break;
         }
 
@@ -134,6 +131,15 @@ int Sistema::registroInmueble(DTInmueble* inmueble, DTPropietario* propietario) 
     inmueblesSistema.insert(i);
     return i->getCodigo();
 };
+
+set<Inmueble*> Sistema::obtenerInmueblesPropietario(string nickname) {
+    Propietario* prop = dynamic_cast<Propietario*>(usuariosSistema[nickname]);
+
+    if (prop != nullptr)
+        return prop->getInmuebles();
+
+    return {};
+}
 
 
 //AltaPublicacion

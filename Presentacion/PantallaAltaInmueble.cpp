@@ -23,13 +23,21 @@ void PantallaAltaInmueble::mostrarPantallaAltaInmueble() {
     }
 
     DTPropietario* propietarioSeleccionado = seleccionarPropietario(listaPropietarios);
+    cout << "Propietario seleccionado: " << propietarioSeleccionado->getNickname() << endl;
 
     DTInmueble* inmuebleRegistrado = ingresoDatosInmueble();
 
     this->sistema->registroInmueble(inmuebleRegistrado, propietarioSeleccionado);
 
-    //propietarioSeleccionado->mostrarInmuebles();
-
+    set<Inmueble*> inmuebles = this->sistema->obtenerInmueblesPropietario(propietarioSeleccionado->getEmail());
+    cout << "Cantidad de inmuebles: " << inmuebles.size() << endl;
+    for (auto inmueble : inmuebles) {
+        cout << "Codigo: " << inmueble->getCodigo() << endl;
+        cout << "Direccion: " << inmueble->getDireccion() << endl;
+        cout << "Año construccion: " << inmueble->getAnioConstruccion() << endl;
+        cout << "Superficie: " << inmueble->getSuperficie() << endl;
+        cout << "Numero Puerta: " << inmueble->getNumeroPuerta();
+    }
 }
 
 DTPropietario* PantallaAltaInmueble::seleccionarPropietario(set<DTPropietario*> propietarios) {
@@ -39,7 +47,6 @@ DTPropietario* PantallaAltaInmueble::seleccionarPropietario(set<DTPropietario*> 
     cin >> nicknameIngresado;
     for (auto propietario: propietarios) {
         if (propietario->getNickname() == nicknameIngresado) {
-            cout << "Propietario seleccionado: " << propietario->getNickname() << endl;
             return propietario;
         }
     }

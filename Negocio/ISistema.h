@@ -29,9 +29,8 @@ class ISistema {
     public:
     //AltaInmueble
     virtual set<DTPropietario*> obtenerPropietarios() = 0;
-    // virtual void seleccionarPropietario(DTPropietario* propietario) = 0;
     virtual int registroInmueble(DTInmueble* inmueble, DTPropietario* propietario) = 0;
-
+    virtual set<Inmueble*> obtenerInmueblesPropietario(string nickname) = 0;
 
     //AltaPublicacion
     virtual set<DTInmobiliaria*> listarInmobiliarias() = 0;

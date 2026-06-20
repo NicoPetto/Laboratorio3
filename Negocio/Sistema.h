@@ -28,7 +28,7 @@ public:
 
     //AltaImueble
     set<DTPropietario*> obtenerPropietarios();
-    //void seleccionarPropietario(DTPropietario* propietario);
+    set<Inmueble*> obtenerInmueblesPropietario(string nickname);
     int registroInmueble(DTInmueble* inmueble, DTPropietario* propietario);
     int finalizarAltaInmueble();
 
