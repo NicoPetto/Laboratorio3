@@ -26,6 +26,9 @@ public:
     set<Inmueble*> inmueblesSistema;
     set<DTInmuebleAdministrado *> inmueblesAdministradosSistema;
 
+    //AltaUsuario
+    void altaUsuario(DTUsuario *usuario);
+
     //AltaImueble
     set<DTPropietario*> obtenerPropietarios();
     set<Inmueble*> obtenerInmueblesPropietario(string nickname);

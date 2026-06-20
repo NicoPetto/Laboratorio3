@@ -64,6 +64,51 @@ Sistema::~Sistema() {
 
 }
 
+//AltaUsuario
+
+void Sistema::altaUsuario(DTUsuario* usuario) {
+    Usuario * u = nullptr;
+    auto it = usuariosSistema.find(usuario->getEmail());
+    if (it != usuariosSistema.end()) {
+        cout << "Ya existe un usuario con ese email" << endl;
+        return;
+    }
+
+    if (DTCliente* cliente = dynamic_cast<DTCliente*>(usuario)) {
+        u = new Cliente(
+            cliente->getApellido(),
+            cliente->getDocumento()
+            );
+
+    }
+    else if (DTPropietario* propietario = dynamic_cast<DTPropietario*>(usuario)) {
+        u = new Propietario(
+            propietario->getCuentaBancaria(),
+            propietario->getTelefonoP()
+            );
+    }
+    else if (DTInmobiliaria* inmobiliaria = dynamic_cast<DTInmobiliaria*>(usuario)) {
+        u = new Inmobiliaria(
+            inmobiliaria->getDireccion(),
+            inmobiliaria->getURL(),
+            inmobiliaria->getTelefono()
+            );
+    }
+
+    if (u == nullptr) {
+        cout << "Tipo de usuario invalido" << endl;
+        return;
+    }
+
+    u->setEmail(usuario->getEmail());
+    u->setNombre(usuario->getNombre());
+    u->setNickname(usuario->getNickname());
+    u->setPassword(usuario->getPassword());
+
+    usuariosSistema[u->getEmail()] = u;
+}
+
+
 //AltaImueble
 set<DTPropietario*> Sistema::obtenerPropietarios() {
 
@@ -92,15 +137,18 @@ int Sistema::registroInmueble(DTInmueble* inmueble, DTPropietario* propietario) 
 
     string nick = propietario->getNickname();
 
-    for (auto par : usuariosSistema) {
-        Usuario* u = par.second;
+    for (auto prop : usuariosSistema) {
+        Usuario* u = prop.second;
 
         Propietario* p = dynamic_cast<Propietario*>(u);
 
         if (p != nullptr && p->getNickname() == nick) {
 
             if (DTCasa* casa = dynamic_cast<DTCasa*>(inmueble)) {
-                i = new Casa(casa->getPH(), casa->getTipoTecho());
+                i = new Casa(
+                    casa->getPH(),
+                    casa->getTipoTecho()
+                    );
                 i->setDireccion(inmueble->getDireccion());
                 i->setNumeroPuerta(inmueble->getNumeroPuerta());
                 i->setSuperficie(inmueble->getSuperficie());
@@ -108,7 +156,11 @@ int Sistema::registroInmueble(DTInmueble* inmueble, DTPropietario* propietario) 
             }
 
             else if (DTApartamento* apartamento = dynamic_cast<DTApartamento*>(inmueble)) {
-                i = new Apartamento(apartamento->getNumeroPiso(), apartamento->getAscensor(), apartamento->getGastosComunes());
+                i = new Apartamento(
+                    apartamento->getNumeroPiso(),
+                    apartamento->getAscensor(),
+                    apartamento->getGastosComunes()
+                    );
                 i->setDireccion(inmueble->getDireccion());
                 i->setNumeroPuerta(inmueble->getNumeroPuerta());
                 i->setSuperficie(inmueble->getSuperficie());
@@ -177,7 +229,13 @@ set<DTInmuebleAdministrado*> Sistema::obtenerInmueblesAdministrados(DTInmobiliar
 
 DTPublicacion* Sistema::finalizarAlta(DTInmuebleAdministrado * inmuebleAdministrado, string texto, int precio) {
     int codigoPublicacion = 1;
-    DTPublicacion * p1 = new DTPublicacion(codigoPublicacion, Alquiler, texto, precio);
+    DTPublicacion * p1 = new DTPublicacion(
+        codigoPublicacion,
+        Alquiler,
+        texto,
+        precio
+        );
+
     cout << "Codigo del inmueble administrado: " << inmuebleAdministrado->getCodigo() << endl;
     cout << "Direccion del inmueble: " << inmuebleAdministrado->getDireccion() << endl;
     return p1;
