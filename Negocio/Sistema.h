@@ -29,6 +29,9 @@ public:
     //AltaUsuario
     void altaUsuario(DTUsuario *usuario);
 
+    //VerUsuarios
+    set<DTUsuario*> obtenerInfoUsuarios(int tipoUsuario);
+
     //AltaImueble
     set<DTPropietario*> obtenerPropietarios();
     set<Inmueble*> obtenerInmueblesPropietario(string nickname);

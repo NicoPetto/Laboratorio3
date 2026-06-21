@@ -56,6 +56,8 @@ add_executable(Lab_3 main.cpp
         Negocio/Administra.h
         Presentacion/PantallaAltaUsuario.cpp
         Presentacion/PantallaAltaUsuario.h
+        Presentacion/PantallaVerUsuarios.cpp
+        Presentacion/PantallaVerUsuarios.h
 
 
 )

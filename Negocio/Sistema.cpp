@@ -108,6 +108,19 @@ void Sistema::altaUsuario(DTUsuario* usuario) {
     usuariosSistema[u->getEmail()] = u;
 }
 
+//VerUsuarios
+
+set<DTUsuario*> Sistema::obtenerInfoUsuarios(int tipoUsuario) {
+
+    set<DTUsuario*> usuarios;
+
+    for (auto users : usuariosSistema) {
+        Usuario* u = users.second;
+
+    }
+
+}
+
 
 //AltaImueble
 set<DTPropietario*> Sistema::obtenerPropietarios() {

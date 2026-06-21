@@ -79,6 +79,10 @@ DTUsuario* PantallaAltaUsuario::ingresoDatosUsuario() {
         }
     }
 
+    if (usuario == nullptr) {
+        return nullptr;
+    }
+
     usuario->setNombre(nombreIngresado);
     usuario->setNickname(nicknameIngresado);
     usuario->setEmail(emailIngresado);
