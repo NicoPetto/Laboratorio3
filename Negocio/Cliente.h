@@ -6,6 +6,7 @@
 #define LAB_2_CLIENTE_H
 
 #include "Usuario.h"
+#include "DTCliente.h"
 
 
 class Cliente : public Usuario {
@@ -17,6 +18,9 @@ public:
     Cliente(string apellido, string documento);
     string getApellido();
     string getDocumento();
+
+    DTCliente* creoDTCliente();
+    DTUsuario* creoDTUsuario() override;
 };
 
 

@@ -31,6 +31,7 @@ public:
 
     //VerUsuarios
     set<DTUsuario*> obtenerInfoUsuarios(int tipoUsuario);
+    DTUsuario* obtenerInfoCompletaUsuario(string email);
 
     //AltaImueble
     set<DTPropietario*> obtenerPropietarios();

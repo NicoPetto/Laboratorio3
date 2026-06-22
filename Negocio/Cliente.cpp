@@ -21,3 +21,21 @@ string Cliente::getApellido() {
 string Cliente::getDocumento() {
     return this->documento;
 }
+
+DTCliente *Cliente::creoDTCliente() {
+    DTCliente* c = new DTCliente(getApellido(), getDocumento());
+    c->setPassword(getPassword());
+    c->setNickname(getNickname());
+    c->setEmail(getEmail());
+    c->setNombre(getNombre());
+    return c;
+}
+
+DTUsuario *Cliente::creoDTUsuario() {
+    DTCliente* c = new DTCliente(getApellido(), getDocumento());
+    c->setPassword(getPassword());
+    c->setNickname(getNickname());
+    c->setEmail(getEmail());
+    c->setNombre(getNombre());
+    return c;
+}

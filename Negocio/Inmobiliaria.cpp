@@ -33,11 +33,20 @@ set<Administra*> Inmobiliaria::getAdministracion() {
 }
 
 DTInmobiliaria *Inmobiliaria::creoDTInmobiliaria() {
-    string nick = getNickname();
-    string nombre = getNombre();
-    DTInmobiliaria * i = new DTInmobiliaria();
-    i -> setNickname(nick);
-    i -> setNombre(nombre);
+    DTInmobiliaria * i = new DTInmobiliaria(getDireccion(), getURL(), getTelefono());
+    i->setPassword(getPassword());
+    i->setNickname(getNickname());
+    i->setEmail(getEmail());
+    i->setNombre(getNombre());
+    return i;
+}
+
+DTUsuario *Inmobiliaria::creoDTUsuario() {
+    DTInmobiliaria * i = new DTInmobiliaria(getDireccion(), getURL(), getTelefono());
+    i->setPassword(getPassword());
+    i->setNickname(getNickname());
+    i->setEmail(getEmail());
+    i->setNombre(getNombre());
     return i;
 }
 

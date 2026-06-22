@@ -47,3 +47,8 @@ void Usuario::setNombre(string nombre) {
 void Usuario::setEmail(string email) {
     this->email = email;
 }
+
+DTUsuario* Usuario::creoDTUsuario() {
+    DTUsuario* u = new DTUsuario(getNickname(), getPassword(), getNombre(), getEmail());
+    return u;
+}

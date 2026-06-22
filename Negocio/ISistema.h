@@ -33,6 +33,7 @@ class ISistema {
 
     //VerUsuarios
     virtual set<DTUsuario*> obtenerInfoUsuarios(int tipoUsuario) = 0;
+    virtual DTUsuario* obtenerInfoCompletaUsuario(string email) = 0;
 
 
     //AltaInmueble

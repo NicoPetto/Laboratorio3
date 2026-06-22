@@ -13,7 +13,11 @@ class PantallaVerUsuarios {
     public:
     PantallaVerUsuarios();
     void mostrarPantallaVerUsuarios();
+    void mostrarUsuariosObtenidos(set<DTUsuario*> usuarios);
+    void mostrarInfoCompletaUsuario(DTUsuario* usuarioCompleto);
 };
+
+
 
 
 

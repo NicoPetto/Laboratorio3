@@ -22,13 +22,20 @@ string Propietario::getTelefonoP() {
 }
 
 DTPropietario *Propietario::creoDTPropietario() {
-    string nick = getNickname();
-    string nombre = getNombre();
-    string email = getEmail();
-    DTPropietario * p = new DTPropietario();
-    p -> setNickname(nick);
-    p -> setEmail(email);
-    p -> setNombre(nombre);
+    DTPropietario * p = new DTPropietario(getCuentaBancaria(), getTelefonoP());
+    p->setPassword(getPassword());
+    p->setNickname(getNickname());
+    p->setEmail(getEmail());
+    p->setNombre(getNombre());
+    return p;
+}
+
+DTUsuario *Propietario::creoDTUsuario() {
+    DTPropietario * p = new DTPropietario(getCuentaBancaria(), getTelefonoP());
+    p->setPassword(getPassword());
+    p->setNickname(getNickname());
+    p->setEmail(getEmail());
+    p->setNombre(getNombre());
     return p;
 }
 

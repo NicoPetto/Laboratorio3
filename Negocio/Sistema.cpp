@@ -23,27 +23,27 @@ Sistema* Sistema::instancia = nullptr;
 Sistema::Sistema() {
 
 
-    Usuario * p1 = new Propietario("Brou", "099927270");
-    Usuario * p2 = new Propietario("Santander", "098765432");
-    Usuario * p3 = new Cliente("Pettorossi", "51457002");
-    Usuario * p4 = new Propietario("Caritas", "091234567");
-    p1->setNickname("1");
-    p1->setNombre("Propietario1");
-    p1->setEmail("p1@gmail.com");
-    p2->setNickname("2");
-    p2->setNombre("Propietario2");
-    p2->setEmail("p2@gmail.com");
-    p3->setNickname("3");
-    p3->setNombre("Cliente3");
-    p3->setEmail("c3@gmail.com");
-    p4->setNickname("4");
-    p4->setNombre("Propietario4");
-    p4->setEmail("p4@gmail.com");
+    Usuario * u1 = new Propietario("Brou", "099927270");
+    Usuario * u2 = new Propietario("Santander", "098765432");
+    Usuario * u3 = new Cliente("Pettorossi", "51457002");
+    Usuario * u4 = new Propietario("Caritas", "091234567");
+    u1->setNickname("1");
+    u1->setNombre("Propietario1");
+    u1->setEmail("p1@gmail.com");
+    u2->setNickname("2");
+    u2->setNombre("Propietario2");
+    u2->setEmail("p2@gmail.com");
+    u3->setNickname("3");
+    u3->setNombre("Cliente3");
+    u3->setEmail("c3@gmail.com");
+    u4->setNickname("4");
+    u4->setNombre("Propietario4");
+    u4->setEmail("p4@gmail.com");
 
-    usuariosSistema[p1->getEmail()] = p1;
-    usuariosSistema[p2->getEmail()] = p2;
-    usuariosSistema[p3->getEmail()] = p3;
-    usuariosSistema[p4->getEmail()] = p4;
+    usuariosSistema[u1->getEmail()] = u1;
+    usuariosSistema[u2->getEmail()] = u2;
+    usuariosSistema[u3->getEmail()] = u3;
+    usuariosSistema[u4->getEmail()] = u4;
 
 
     Inmobiliaria * i1 = new Inmobiliaria("DirInm1", "www.inm1.com", "111111111");
@@ -116,13 +116,51 @@ set<DTUsuario*> Sistema::obtenerInfoUsuarios(int tipoUsuario) {
 
     for (auto users : usuariosSistema) {
         Usuario* u = users.second;
-
+        switch (tipoUsuario) {
+            case 1: {
+                Cliente* c = dynamic_cast<Cliente*>(u);
+                if (c != nullptr) {
+                    usuarios.insert(c->creoDTCliente());
+                }
+                break;
+            }
+            case 2: {
+                Propietario* p = dynamic_cast<Propietario*>(u);
+                if (p != nullptr) {
+                    usuarios.insert(p->creoDTPropietario());
+                }
+                break;
+            }
+            case 3: {
+                Inmobiliaria* i = dynamic_cast<Inmobiliaria*>(u);
+                if (i != nullptr) {
+                    usuarios.insert(i->creoDTInmobiliaria());
+                }
+                break;
+            }
+            case 4: {
+                    usuarios.insert(u->creoDTUsuario());
+                break;
+            }
+        }
     }
+    return usuarios;
+}
 
+DTUsuario* Sistema::obtenerInfoCompletaUsuario(string email) {
+    DTUsuario * u;
+    auto it = usuariosSistema.find(email);
+
+    if (it == usuariosSistema.end()) {
+        return nullptr;
+    } else {
+        u = it->second->creoDTUsuario();
+    }
+    return u;
 }
 
 
-//AltaImueble
+//AltaInmueble
 set<DTPropietario*> Sistema::obtenerPropietarios() {
 
 

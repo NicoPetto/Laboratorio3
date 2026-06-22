@@ -9,8 +9,8 @@
 
 int main() {
 
-    PantallaAltaUsuario * pantallaAltaUsuario = new PantallaAltaUsuario();
-    pantallaAltaUsuario->mostrarPantallaAltaUsuario();
+    //PantallaAltaUsuario * pantallaAltaUsuario = new PantallaAltaUsuario();
+    //pantallaAltaUsuario->mostrarPantallaAltaUsuario();
 
     PantallaVerUsuarios * pantallaVerUsuarios = new PantallaVerUsuarios();
     pantallaVerUsuarios->mostrarPantallaVerUsuarios();

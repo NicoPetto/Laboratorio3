@@ -26,6 +26,7 @@ public:
     string getTelefono();
     set<Administra*> getAdministracion();
     DTInmobiliaria * creoDTInmobiliaria();
+    DTUsuario* creoDTUsuario() override;
 
     set<DTInmuebleAdministrado*> detallesAdministracion();
 };

@@ -6,6 +6,7 @@
 #define LAB_2_USUARIO_H
 
 #include <iostream>
+#include "DTUsuario.h"
 using namespace std;
 
 
@@ -27,6 +28,8 @@ public:
     string getPassword();
     string getNombre();
     string getEmail();
+
+    virtual DTUsuario* creoDTUsuario() = 0;
 
 };
 
