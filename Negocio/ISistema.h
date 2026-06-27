@@ -35,6 +35,10 @@ class ISistema {
     virtual set<DTUsuario*> obtenerInfoUsuarios(int tipoUsuario) = 0;
     virtual DTUsuario* obtenerInfoCompletaUsuario(string email) = 0;
 
+    //RepresentarPropietario
+    //virtual set<DTInmobiliaria*> obtenerInmobiliarias() = 0;
+    virtual set<DTPropietario*> obtenerPropietariosNoRepresentados(string mailInm) = 0;
+    virtual void representar(string mailInmo, string mailProp) = 0;
 
     //AltaInmueble
     virtual set<DTPropietario*> obtenerPropietarios() = 0;
@@ -42,7 +46,7 @@ class ISistema {
     virtual set<Inmueble*> obtenerInmueblesPropietario(string nickname) = 0;
 
     //AltaPublicacion
-    virtual set<DTInmobiliaria*> listarInmobiliarias() = 0;
+    virtual set<DTInmobiliaria*> obtenerInmobiliarias() = 0;
     virtual set<DTInmuebleAdministrado*> obtenerInmueblesAdministrados(DTInmobiliaria * inmobiliaria) = 0;
     virtual DTPublicacion* finalizarAlta(DTInmuebleAdministrado * inmuebleAdministrado, string texto, int precio) = 0;
 

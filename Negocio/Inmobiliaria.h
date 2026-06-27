@@ -6,16 +6,20 @@
 #define LAB_2_INMOBILIARIA_H
 #include "Administra.h"
 #include "DTInmobiliaria.h"
+#include "DTPropietario.h"
 #include "Usuario.h"
+#include <map>
 
 class Administra;
 class DTInmuebleAdministrado;
+class Propietario;
 
 class Inmobiliaria : public Usuario {
 private:
     string direccion;
     string URL;
     string telefono;
+    map <string, Propietario*> propietariosRepresentados;
     set<Administra*>  listaAdministraciones;
 
 public:
@@ -27,6 +31,9 @@ public:
     set<Administra*> getAdministracion();
     DTInmobiliaria * creoDTInmobiliaria();
     DTUsuario* creoDTUsuario() override;
+    void represento(Propietario* propietario);
+
+    set<DTPropietario*> obtengoPropietariosNoRepresentados(set<DTPropietario*> propietarios);
 
     set<DTInmuebleAdministrado*> detallesAdministracion();
 };

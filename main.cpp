@@ -4,6 +4,7 @@
 #include "Presentacion/PantallaAltaUsuario.h"
 #include "Presentacion/PantallaAltaPublicacion.h"
 #include "Presentacion/PantallaVerUsuarios.h"
+#include "Presentacion/PantallaRepresentarPropietario.h"
 
 
 
@@ -15,8 +16,11 @@ int main() {
     PantallaVerUsuarios * pantallaVerUsuarios = new PantallaVerUsuarios();
     pantallaVerUsuarios->mostrarPantallaVerUsuarios();
 
-    PantallaAltaInmueble * pantallaAltaInmueble = new PantallaAltaInmueble();
-    pantallaAltaInmueble->mostrarPantallaAltaInmueble();
+    //PantallaAltaInmueble * pantallaAltaInmueble = new PantallaAltaInmueble();
+    //pantallaAltaInmueble->mostrarPantallaAltaInmueble();
+
+    PantallaRepresentarPropietario * pantallaRepresentarPropietario = new PantallaRepresentarPropietario();
+    pantallaRepresentarPropietario->mostrarPantallaRepresentarPropietario();
 
     //PantallaAltaPublicacion * pantallaAltaPublicacion = new PantallaAltaPublicacion();
     //pantallaAltaPublicacion->mostrarPantallaAltaPublicacion();

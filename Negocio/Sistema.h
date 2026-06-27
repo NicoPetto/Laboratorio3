@@ -16,12 +16,10 @@ class Sistema : public ISistema {
 private:
     Sistema();
     static Sistema* instancia;
-
+    map <string, Usuario*> usuariosSistema;
 public:
     virtual ~Sistema();
     static Sistema* getInstancia();
-    map <string, Usuario*> usuariosSistema;
-    // map <string, Inmobiliaria*> inmobiliariasSistema;
     set<Inmobiliaria*> inmobiliariasSistema;
     set<Inmueble*> inmueblesSistema;
     set<DTInmuebleAdministrado *> inmueblesAdministradosSistema;
@@ -39,8 +37,13 @@ public:
     int registroInmueble(DTInmueble* inmueble, DTPropietario* propietario);
     int finalizarAltaInmueble();
 
+    //RepresentarPropietario
+    //set<DTInmobiliaria*> obtenerInmobiliarias();
+    set<DTPropietario*> obtenerPropietariosNoRepresentados(string mailInm);
+    void representar(string mailInmo, string mailProp);
+
     //AltaPublicacion
-    set<DTInmobiliaria*> listarInmobiliarias();
+    set<DTInmobiliaria*> obtenerInmobiliarias();
     set<DTInmuebleAdministrado*> obtenerInmueblesAdministrados(DTInmobiliaria* inmobiliaria);
     DTPublicacion* finalizarAlta(DTInmuebleAdministrado * inmuebleAdminstrado, string texto, int precio);
 

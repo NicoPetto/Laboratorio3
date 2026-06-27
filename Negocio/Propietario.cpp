@@ -56,3 +56,7 @@ void Propietario::mostrarInmuebles() {
         cout << "Numero Puerta: " << i->getNumeroPuerta();
     }
 }
+
+void Propietario::meRepresenta(Inmobiliaria *inmobiliaria) {
+    inmobiliariasMeRepresentan[inmobiliaria->getEmail()] = inmobiliaria;
+}

@@ -8,7 +8,13 @@
 
 
 class PantallaRepresentarPropietario {
-
+private:
+    ISistema* sistema;
+    DTInmobiliaria * seleccionarInmobiliaria(set<DTInmobiliaria*> inmobiliarias);
+    DTPropietario* seleccionarPropietarioARepresentar(set<DTPropietario*> propietarios);
+public:
+    PantallaRepresentarPropietario();
+    void mostrarPantallaRepresentarPropietario();
 };
 
 

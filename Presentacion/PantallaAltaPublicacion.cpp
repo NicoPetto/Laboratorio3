@@ -12,13 +12,10 @@ PantallaAltaPublicacion::PantallaAltaPublicacion() {
 void PantallaAltaPublicacion::mostrarPantallaAltaPublicacion() {
 
     string textoI;
-    cout << "¡¡¡IMPORTANTE: SELECCIONAR INMOBILIARIA 11 CON INMUEBLE 1, E INMOBILIARIA 22 CON INMUEBLE 2!!!" << endl;
-    cout << "¡¡¡IMPORTANTE: SELECCIONAR INMOBILIARIA 11 CON INMUEBLE 1, E INMOBILIARIA 22 CON INMUEBLE 2!!!" << endl;
-    cout << "¡¡¡IMPORTANTE: SELECCIONAR INMOBILIARIA 11 CON INMUEBLE 1, E INMOBILIARIA 22 CON INMUEBLE 2!!!" << endl;
     int precioI;
     cout << "__--ALTA PUBLICACION__--" << endl << endl;
     cout << "Lista de inmobiliarias: " << endl;
-    set<DTInmobiliaria *> listaInmobiliarias = this->sistema->listarInmobiliarias();
+    set<DTInmobiliaria *> listaInmobiliarias = this->sistema->obtenerInmobiliarias();
     for (auto inmobiliaria: listaInmobiliarias) {
         cout << "Nickname: " << inmobiliaria->getNickname() << endl;
         cout << "Nombre: " << inmobiliaria->getNombre() << endl << endl;

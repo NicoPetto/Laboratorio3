@@ -63,7 +63,24 @@ set<DTInmuebleAdministrado*> Inmobiliaria::detallesAdministracion() {
         }
     }
 
-
     return resultado;
 
+}
+
+set<DTPropietario*> Inmobiliaria::obtengoPropietariosNoRepresentados(set<DTPropietario*> propietarios) {
+    set<DTPropietario*> propietariosNoRep;
+
+    for (auto p : propietarios) {
+        auto it = propietariosRepresentados.find(p->getEmail());
+
+        if (it == propietariosRepresentados.end()) {
+            propietariosNoRep.insert(p);
+        }
+    }
+
+    return propietariosNoRep;
+}
+
+void Inmobiliaria::represento(Propietario *propietario) {
+    propietariosRepresentados[propietario->getEmail()] = propietario;
 }

@@ -21,40 +21,49 @@
 Sistema* Sistema::instancia = nullptr;
 
 Sistema::Sistema() {
-
-
-    Usuario * u1 = new Propietario("Brou", "099927270");
-    Usuario * u2 = new Propietario("Santander", "098765432");
-    Usuario * u3 = new Cliente("Pettorossi", "51457002");
-    Usuario * u4 = new Propietario("Caritas", "091234567");
-    u1->setNickname("1");
+    Usuario * u1 = new Propietario("CuentaBanco1", "TelProp1");
+    u1->setNickname("NickProp1");
     u1->setNombre("Propietario1");
-    u1->setEmail("p1@gmail.com");
-    u2->setNickname("2");
+    u1->setEmail("prop1@gmail.com");
+    u1->setPassword("PassProp1");
+    Usuario * u2 = new Propietario("CuentaBanco2", "TelProp2");
+    u2->setNickname("NickProp2");
     u2->setNombre("Propietario2");
-    u2->setEmail("p2@gmail.com");
-    u3->setNickname("3");
-    u3->setNombre("Cliente3");
-    u3->setEmail("c3@gmail.com");
-    u4->setNickname("4");
-    u4->setNombre("Propietario4");
-    u4->setEmail("p4@gmail.com");
+    u2->setEmail("prop2@gmail.com");
+    u2->setPassword("PassProp2");
+    Usuario * u3 = new Cliente("ApellidoCli1", "DocuCli1");
+    u3->setNickname("NickCli1");
+    u3->setNombre("Cliente1");
+    u3->setEmail("cli1@gmail.com");
+    u3->setPassword("PassCli1");
+    Usuario * u4 = new Inmobiliaria("DirInmo1", "URLInmo1", "TelInmo1");
+    u4->setNickname("NickInmo1");
+    u4->setNombre("Inmo1");
+    u4->setEmail("inmo1@gmail.com");
+    u4->setPassword("PassInmo1");
+    Usuario * u5 = new Inmobiliaria("DirInmo2", "URLInmo2", "TelInmo2");
+    u5->setNickname("NickInmo2");
+    u5->setNombre("Inmo2");
+    u5->setEmail("inmo2@gmail.com");
+    u5->setPassword("PassInmo2");
+    Usuario * u6 = new Propietario("CuentaBanco3", "TelProp3");
+    u6->setNickname("NickProp3");
+    u6->setNombre("Propietario3");
+    u6->setEmail("prop3@gmail.com");
+    u6->setPassword("PassProp3");
+    Usuario * u7 = new Cliente("ApellidoCli2", "DocuCli2");
+    u7->setNickname("NickCli2");
+    u7->setNombre("Cliente2");
+    u7->setEmail("cli2@gmail.com");
+    u7->setPassword("PassCli2");
 
     usuariosSistema[u1->getEmail()] = u1;
     usuariosSistema[u2->getEmail()] = u2;
     usuariosSistema[u3->getEmail()] = u3;
     usuariosSistema[u4->getEmail()] = u4;
-
-
-    Inmobiliaria * i1 = new Inmobiliaria("DirInm1", "www.inm1.com", "111111111");
-    i1->setNickname("11");
-    i1->setNombre("Inm1");
-    Inmobiliaria * i2 = new Inmobiliaria("DirInm2", "www.inm2.com", "222222222");
-    i2->setNickname("22");
-    i2->setNombre("Inm2");
-
-    inmobiliariasSistema.insert(i1);
-    inmobiliariasSistema.insert(i2);
+    usuariosSistema[u5->getEmail()] = u5;
+    usuariosSistema[u6->getEmail()] = u6;
+    usuariosSistema[u7->getEmail()] = u7;
 
 
 
@@ -159,10 +168,49 @@ DTUsuario* Sistema::obtenerInfoCompletaUsuario(string email) {
     return u;
 }
 
+//RepresentarPropietario
+
+//set<DTInmobiliaria*> Sistema::obtenerInmobiliarias(){
+
+//}
+
+set<DTPropietario*> Sistema::obtenerPropietariosNoRepresentados(string mailInm) {
+    set <DTPropietario*> noRepresentados;
+    set <DTPropietario*> propietariosSis;
+    for (auto prop : usuariosSistema) {
+        Usuario* u = prop.second;
+        Propietario* p = dynamic_cast<Propietario*>(u);
+
+        if (p != nullptr) {
+            propietariosSis.insert(p->creoDTPropietario());
+        }
+    }
+
+    auto it= usuariosSistema.find(mailInm);
+    if (it != usuariosSistema.end()) {
+        Usuario* inmo = it->second;
+        Inmobiliaria* i = dynamic_cast<Inmobiliaria*>(inmo);
+         return i->obtengoPropietariosNoRepresentados(propietariosSis);
+    }
+}
+
+void Sistema::representar(string mailInm, string mailProp) {
+    auto it1 = usuariosSistema.find(mailInm);
+    if (it1 != usuariosSistema.end()) {
+        auto it2 = usuariosSistema.find(mailProp);
+        if (it2 != usuariosSistema.end()) {
+            Usuario* inmo = it1->second;
+            Inmobiliaria* i = dynamic_cast<Inmobiliaria*>(inmo);
+            Usuario* prop = it2->second;
+            Propietario* p = dynamic_cast<Propietario*>(prop);
+            i->represento(p);
+            p->meRepresenta(i);
+        }
+    }
+}
 
 //AltaInmueble
 set<DTPropietario*> Sistema::obtenerPropietarios() {
-
 
     set<DTPropietario*> propietarios;
 
@@ -246,18 +294,22 @@ set<Inmueble*> Sistema::obtenerInmueblesPropietario(string nickname) {
 
 
 //AltaPublicacion
-set<DTInmobiliaria*> Sistema::listarInmobiliarias() {
+set<DTInmobiliaria*> Sistema::obtenerInmobiliarias() {
+
     set<DTInmobiliaria*> inmobiliarias;
 
+    for (auto inmo : usuariosSistema) {
+        Usuario* u = inmo.second;
 
-    for (Usuario* u : inmobiliariasSistema) {
         Inmobiliaria* i = dynamic_cast<Inmobiliaria*>(u);
+
         if (i != nullptr) {
-            DTInmobiliaria* dt = i->creoDTInmobiliaria();
-            inmobiliarias.insert(dt);
+            inmobiliarias.insert(i->creoDTInmobiliaria());
         }
     }
+
     return inmobiliarias;
+
 };
 
 set<DTInmuebleAdministrado*> Sistema::obtenerInmueblesAdministrados(DTInmobiliaria * inmobiliaria) {

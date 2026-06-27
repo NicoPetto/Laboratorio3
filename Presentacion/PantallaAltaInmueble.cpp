@@ -42,16 +42,16 @@ void PantallaAltaInmueble::mostrarPantallaAltaInmueble() {
 
 DTPropietario* PantallaAltaInmueble::seleccionarPropietario(set<DTPropietario*> propietarios) {
 
-    cout << "Seleccione un propietario (Nickname): " << endl;
-    string nicknameIngresado;
-    cin >> nicknameIngresado;
+    cout << "Seleccione un propietario (email): " << endl;
+    string emailIngresado;
+    cin >> emailIngresado;
     for (auto propietario: propietarios) {
-        if (propietario->getNickname() == nicknameIngresado) {
+        if (propietario->getEmail() == emailIngresado) {
             return propietario;
         }
     }
 
-    cout << "Error: no se encontro el propietario con nickname " << nicknameIngresado << endl;
+    cout << "Error: no se encontro el propietario con email " << emailIngresado << endl;
 
     return nullptr;
 
