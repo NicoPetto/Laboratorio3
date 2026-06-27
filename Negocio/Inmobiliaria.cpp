@@ -84,3 +84,14 @@ set<DTPropietario*> Inmobiliaria::obtengoPropietariosNoRepresentados(set<DTPropi
 void Inmobiliaria::represento(Propietario *propietario) {
     propietariosRepresentados[propietario->getEmail()] = propietario;
 }
+
+set<DTPropietario*> Inmobiliaria::obtengoPropietariosRepresentados() {
+    set<DTPropietario*> propietariosRep;
+
+    for (auto p : propietariosRepresentados) {
+            propietariosRep.insert(p.second->creoDTPropietario());
+        }
+    return propietariosRep;
+
+    }
+

@@ -34,6 +34,7 @@ public:
     void represento(Propietario* propietario);
 
     set<DTPropietario*> obtengoPropietariosNoRepresentados(set<DTPropietario*> propietarios);
+    set<DTPropietario*> obtengoPropietariosRepresentados();
 
     set<DTInmuebleAdministrado*> detallesAdministracion();
 };

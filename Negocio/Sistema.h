@@ -42,6 +42,10 @@ public:
     set<DTPropietario*> obtenerPropietariosNoRepresentados(string mailInm);
     void representar(string mailInmo, string mailProp);
 
+    //VerRepresentados
+    //set<DTInmobiliaria*> obtenerInmobiliarias();
+    set<DTPropietario*> obtenerPropietariosRepresentados(string mailInm);
+
     //AltaPublicacion
     set<DTInmobiliaria*> obtenerInmobiliarias();
     set<DTInmuebleAdministrado*> obtenerInmueblesAdministrados(DTInmobiliaria* inmobiliaria);

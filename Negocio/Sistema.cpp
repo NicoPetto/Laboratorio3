@@ -208,6 +208,17 @@ void Sistema::representar(string mailInm, string mailProp) {
         }
     }
 }
+//Ver Representados
+
+set<DTPropietario*> Sistema::obtenerPropietariosRepresentados(string mailInm) {
+
+    auto it= usuariosSistema.find(mailInm);
+    if (it != usuariosSistema.end()) {
+        Usuario* inmo = it->second;
+        Inmobiliaria* i = dynamic_cast<Inmobiliaria*>(inmo);
+        return i->obtengoPropietariosRepresentados();
+    }
+}
 
 //AltaInmueble
 set<DTPropietario*> Sistema::obtenerPropietarios() {

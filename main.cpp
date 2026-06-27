@@ -5,6 +5,7 @@
 #include "Presentacion/PantallaAltaPublicacion.h"
 #include "Presentacion/PantallaVerUsuarios.h"
 #include "Presentacion/PantallaRepresentarPropietario.h"
+#include "Presentacion/PantallaVerRepresentados.h"
 
 
 
@@ -21,6 +22,12 @@ int main() {
 
     PantallaRepresentarPropietario * pantallaRepresentarPropietario = new PantallaRepresentarPropietario();
     pantallaRepresentarPropietario->mostrarPantallaRepresentarPropietario();
+    pantallaRepresentarPropietario->mostrarPantallaRepresentarPropietario();
+    pantallaRepresentarPropietario->mostrarPantallaRepresentarPropietario();
+    pantallaRepresentarPropietario->mostrarPantallaRepresentarPropietario();
+
+    PantallaVerRepresentados * pantallaVerRepresentados = new PantallaVerRepresentados();
+    pantallaVerRepresentados->mostrarPantallaVerRepresentados();
 
     //PantallaAltaPublicacion * pantallaAltaPublicacion = new PantallaAltaPublicacion();
     //pantallaAltaPublicacion->mostrarPantallaAltaPublicacion();
