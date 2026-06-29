@@ -40,20 +40,20 @@ DTUsuario *Propietario::creoDTUsuario() {
 }
 
 void Propietario::agregarInmueble(Inmueble * inmueble) {
-    inmueblesPropietario.insert(inmueble);
+    inmueblesPropietario[inmueble->getCodigo()] = inmueble;
 }
 
-set<Inmueble *> Propietario::getInmuebles() {
+map <int, Inmueble*> Propietario::getInmuebles() {
     return inmueblesPropietario;
 }
 
 void Propietario::mostrarInmuebles() {
-    for (Inmueble* i : inmueblesPropietario) {
-        cout << "Codigo: " << i->getCodigo() << endl;
-        cout << "Direccion: " << i->getDireccion() << endl;
-        cout << "Año construccion: " << i->getAnioConstruccion() << endl;
-        cout << "Superficie: " << i->getSuperficie() << endl;
-        cout << "Numero Puerta: " << i->getNumeroPuerta();
+    for (auto i : inmueblesPropietario) {
+        cout << "Codigo: " << i.second->getCodigo() << endl;
+        cout << "Direccion: " << i.second->getDireccion() << endl;
+        cout << "Año construccion: " << i.second->getAnioConstruccion() << endl;
+        cout << "Superficie: " << i.second->getSuperficie() << endl;
+        cout << "Numero Puerta: " << i.second->getNumeroPuerta();
     }
 }
 

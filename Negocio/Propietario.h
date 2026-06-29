@@ -20,7 +20,7 @@ class Propietario : public Usuario {
 private:
     string cuentaBancaria;
     string telefonoP;
-    set<Inmueble*> inmueblesPropietario;
+    map <int, Inmueble*> inmueblesPropietario;
     map<string, Inmobiliaria*> inmobiliariasMeRepresentan;
 
 public:
@@ -30,7 +30,7 @@ public:
     string getTelefonoP();
     DTPropietario * creoDTPropietario();
     DTUsuario * creoDTUsuario() override;
-    set<Inmueble*> getInmuebles();
+    map <int, Inmueble*> getInmuebles();
     void agregarInmueble(Inmueble* inmueble);
     void mostrarInmuebles();
     void meRepresenta(Inmobiliaria* inmobiliaria);

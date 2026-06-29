@@ -8,12 +8,13 @@ DTInmueble::DTInmueble() {
 
 }
 
-DTInmueble::DTInmueble(int codigo, string direccion, int numeroPuerta, int superficie, int AnioConstruccion) {
+DTInmueble::DTInmueble(int codigo, string direccion, int numeroPuerta, int superficie, int AnioConstruccion, string nomPropietario) {
     this->codigo = codigo;
     this->direccion = direccion;
     this->numeroPuerta = numeroPuerta;
     this->superficie = superficie;
     this->AnioConstruccion = AnioConstruccion;
+    this->nomPropietario = nomPropietario;
 };
 
 DTInmueble::~DTInmueble() {
@@ -53,4 +54,7 @@ void DTInmueble::setSuperficie(int superficie) {
 }
 void DTInmueble::setAnioConstruccion(int AnioConstruccion) {
     this->AnioConstruccion = AnioConstruccion;
+}
+string DTInmueble::getPropietario() {
+    return this->nomPropietario;
 }

@@ -192,6 +192,7 @@ set<DTPropietario*> Sistema::obtenerPropietariosNoRepresentados(string mailInm) 
         Inmobiliaria* i = dynamic_cast<Inmobiliaria*>(inmo);
          return i->obtengoPropietariosNoRepresentados(propietariosSis);
     }
+    return {};
 }
 
 void Sistema::representar(string mailInm, string mailProp) {
@@ -218,6 +219,24 @@ set<DTPropietario*> Sistema::obtenerPropietariosRepresentados(string mailInm) {
         Inmobiliaria* i = dynamic_cast<Inmobiliaria*>(inmo);
         return i->obtengoPropietariosRepresentados();
     }
+    return {};
+}
+
+
+//Administrar Propiedad
+//set<DTInmobiliaria*> Sistema::obtenerInmobiliarias(){
+//}
+
+set<DTInmueble*> Sistema::obtenerInmueblesDePropietariosRepresentados(string mailInm) {
+    set<DTInmueble*> inmuebles;
+    auto it= usuariosSistema.find(mailInm);
+    if (it != usuariosSistema.end()) {
+        Usuario* inmo = it->second;
+        Inmobiliaria* i = dynamic_cast<Inmobiliaria*>(inmo);
+        return i->obtengoInmueblesDePropietariosRepresentados();
+    }
+
+    return {};
 }
 
 //AltaInmueble
@@ -244,16 +263,17 @@ int Sistema::registroInmueble(DTInmueble* inmueble, DTPropietario* propietario) 
     static int codigo = 0;
 
     Inmueble * i = nullptr;
+    Propietario* p = nullptr;
 
-    string nick = propietario->getNickname();
+    string email = propietario->getEmail();
 
     for (auto prop : usuariosSistema) {
         Usuario* u = prop.second;
 
-        Propietario* p = dynamic_cast<Propietario*>(u);
+        Propietario* pr = dynamic_cast<Propietario*>(u);
 
-        if (p != nullptr && p->getNickname() == nick) {
-
+        if (pr != nullptr && pr->getEmail() == email) {
+            p = pr;
             if (DTCasa* casa = dynamic_cast<DTCasa*>(inmueble)) {
                 i = new Casa(
                     casa->getPH(),
@@ -276,8 +296,6 @@ int Sistema::registroInmueble(DTInmueble* inmueble, DTPropietario* propietario) 
                 i->setSuperficie(inmueble->getSuperficie());
                 i->setAnioConstruccion(inmueble->getAnioConstruccion());
             }
-            p->agregarInmueble(i);
-            cout << "Cantidad luego de agregar: " << p->getInmuebles().size() << endl;
             break;
         }
 
@@ -286,21 +304,23 @@ int Sistema::registroInmueble(DTInmueble* inmueble, DTPropietario* propietario) 
     if (i == nullptr) {
         return -1;
     }
-
-
     codigo++;
     i->setCodigo(codigo);
+    i->setPropietario(p);
+    p->agregarInmueble(i);
     inmueblesSistema.insert(i);
     return i->getCodigo();
-};
+}
 
 set<Inmueble*> Sistema::obtenerInmueblesPropietario(string nickname) {
     Propietario* prop = dynamic_cast<Propietario*>(usuariosSistema[nickname]);
+    set <Inmueble*> inmuebles;
 
-    if (prop != nullptr)
-        return prop->getInmuebles();
+    for (auto it : prop->getInmuebles()) {
+        inmuebles.insert(it.second);
+    }
 
-    return {};
+    return inmuebles;
 }
 
 
@@ -331,13 +351,12 @@ set<DTInmuebleAdministrado*> Sistema::obtenerInmueblesAdministrados(DTInmobiliar
 
             Propietario* p = dynamic_cast<Propietario*>(u);
 
-        Inmobiliaria* i = dynamic_cast<Inmobiliaria*>(u);
+            Inmobiliaria* i = dynamic_cast<Inmobiliaria*>(u);
 
-        if (i != nullptr && i->getNickname() == nick) {
+            if (i != nullptr && i->getNickname() == nick) {
             return i->detallesAdministracion();
+            }
         }
-
-    }
     return {};
 };
 
@@ -378,17 +397,6 @@ void Sistema::agendarVisita(string nick, Visita* visita) {
     cout << "Se agendaron visitas";
 };
 
-//RepresentarPropietario
-//set<DTInmobiliaria> listarInmobiliarias();
-set <DTPropietario*> Sistema::verPropietariosInmobiliaria(string nick) {
-    set<DTPropietario*> propietarios;
-    cout << "Se obtuvieron propietarios para inmobiliarias";
-    return propietarios;
-};
-
-void Sistema::representar(Propietario* propietario) {
-    cout << "Se representó un propietario";
-};
 
 Sistema* Sistema::getInstancia() {
     if (Sistema::instancia == nullptr) {

@@ -15,6 +15,7 @@ using namespace std;
 class Administra;
 class Propietario;
 class DTInmuebleAdministrado;
+class DTInmueble;
 
 
 class Inmueble {
@@ -37,6 +38,7 @@ public:
     int getSuperficie();
     int getAnioConstruccion();
     Propietario * getPropietario();
+    void setPropietario(Propietario* propietario);
     set<Administra*>  getAdministraciones();
     void setCodigo(int codigo);
     void setDireccion(string direccion);
@@ -44,6 +46,7 @@ public:
     void setSuperficie(int superficie);
     void setAnioConstruccion(int AnioConstruccion);
     DTInmuebleAdministrado * creoDTInmuebleAdministrado();
+    DTInmueble* creoDTInmueble();
 
 };
 

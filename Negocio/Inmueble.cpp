@@ -62,12 +62,20 @@ Propietario * Inmueble::getPropietario() {
     return this->propietario;
 }
 
+void Inmueble::setPropietario(Propietario* propietario) {
+    this->propietario = propietario;
+}
+
 
 DTInmuebleAdministrado * Inmueble::creoDTInmuebleAdministrado() {
-
     int codigo = this->getCodigo();
     string direccion = this->getDireccion();
     string nombre = this->propietario->getNombre();
     DTInmuebleAdministrado * InAdm = new DTInmuebleAdministrado(codigo, direccion, nombre);
     return InAdm;
+}
+
+DTInmueble *Inmueble::creoDTInmueble() {
+    DTInmueble * Inm = new DTInmueble(this->getCodigo(), this->getDireccion(), this->getNumeroPuerta(), this->getSuperficie(), this->getAnioConstruccion(), propietario->getNombre());
+    return Inm;
 }

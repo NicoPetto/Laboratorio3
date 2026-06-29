@@ -59,10 +59,10 @@ class ISistema {
     virtual set<DTCliente*> obtenerClientes() = 0;
     virtual void agendarVisita(string nick, Visita* visita) = 0;
 
-    //RepresentarPropietario
-    //virtual set<DTInmobiliaria *> listarInmobiliarias() = 0;
-    virtual set <DTPropietario*> verPropietariosInmobiliaria(string nick) = 0;
-    virtual void representar(Propietario* propietario) = 0;
+
+    //Administrar Propiedad
+    //virtual set<DTInmobiliaria*> obtenerInmobiliarias() = 0;
+    virtual set<DTInmueble*> obtenerInmueblesDePropietariosRepresentados(string mailInm) = 0;
 
 
 };

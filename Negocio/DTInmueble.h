@@ -7,6 +7,7 @@
 #include <string>
 
 using namespace std;
+class Propietario;
 
 
 class DTInmueble {
@@ -16,10 +17,11 @@ protected:
     int numeroPuerta;
     int superficie;
     int AnioConstruccion;
+    string nomPropietario;
 
 public:
     DTInmueble();
-    DTInmueble(int codigo, string direccion, int numeroPuerta, int superficie, int AnioConstruccion);
+    DTInmueble(int codigo, string direccion, int numeroPuerta, int superficie, int AnioConstruccion, string nomPropietario);
     virtual ~DTInmueble();
     int getCodigo();
     string getDireccion();
@@ -31,6 +33,7 @@ public:
     void setNumeroPuerta(int numeroPuerta);
     void setSuperficie(int superficie);
     void setAnioConstruccion(int AnioConstruccion);
+    string getPropietario();
 
 };
 

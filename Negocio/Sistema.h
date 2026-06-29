@@ -20,7 +20,6 @@ private:
 public:
     virtual ~Sistema();
     static Sistema* getInstancia();
-    set<Inmobiliaria*> inmobiliariasSistema;
     set<Inmueble*> inmueblesSistema;
     set<DTInmuebleAdministrado *> inmueblesAdministradosSistema;
 
@@ -57,10 +56,9 @@ public:
     set<DTCliente*> obtenerClientes();
     void agendarVisita(string nick, Visita* visita);
 
-    //RepresentarPropietario
-    //set<DTInmobiliaria> listarInmobiliarias();
-    set <DTPropietario*> verPropietariosInmobiliaria(string nick);
-    void representar(Propietario* propietario);
+    //Administrar Propiedad
+    //set<DTInmobiliaria*> obtenerInmobiliarias();
+    set<DTInmueble*> obtenerInmueblesDePropietariosRepresentados(string mailInm);
 
 };
 

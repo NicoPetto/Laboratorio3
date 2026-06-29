@@ -93,5 +93,20 @@ set<DTPropietario*> Inmobiliaria::obtengoPropietariosRepresentados() {
         }
     return propietariosRep;
 
+}
+
+set<DTInmueble *> Inmobiliaria::obtengoInmueblesDePropietariosRepresentados() {
+    set<DTInmueble*> inmueblesDePropietarios;
+
+    for (const auto& p : propietariosRepresentados) {
+        auto inmuebles = p.second->getInmuebles();
+
+        for (const auto& par : inmuebles) {
+            Inmueble* inmueble = par.second;
+            inmueblesDePropietarios.insert(inmueble->creoDTInmueble());
+        }
     }
+
+    return inmueblesDePropietarios;
+}
 

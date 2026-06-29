@@ -10,6 +10,8 @@
 #include "Usuario.h"
 #include <map>
 
+#include "DTInmueble.h"
+
 class Administra;
 class DTInmuebleAdministrado;
 class Propietario;
@@ -35,6 +37,7 @@ public:
 
     set<DTPropietario*> obtengoPropietariosNoRepresentados(set<DTPropietario*> propietarios);
     set<DTPropietario*> obtengoPropietariosRepresentados();
+    set<DTInmueble*> obtengoInmueblesDePropietariosRepresentados();
 
     set<DTInmuebleAdministrado*> detallesAdministracion();
 };

@@ -60,6 +60,8 @@ add_executable(Lab_3 main.cpp
         Presentacion/PantallaVerUsuarios.h
         Presentacion/PantallaVerRepresentados.cpp
         Presentacion/PantallaVerRepresentados.h
+        Presentacion/PantallaAdministrarPropiedad.cpp
+        Presentacion/PantallaAdministrarPropiedad.h
 
 
 )
