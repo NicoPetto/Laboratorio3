@@ -59,6 +59,7 @@ public:
     //Administrar Propiedad
     //set<DTInmobiliaria*> obtenerInmobiliarias();
     set<DTInmueble*> obtenerInmueblesDePropietariosRepresentados(string mailInm);
+    void administrar(string mail, int codigo);
 
 };
 

@@ -31,6 +31,10 @@ void PantallaAdministrarPropiedad::mostrarPantallaAdministrarPropiedad() {
         cout << "Nombre del Propietario: " << inmueble->getPropietario() << endl << endl;
     }
 
+    DTInmueble * inmuebleAdmin = seleccionarInmueble(inmueblesDePropietariosRepresentados);
+
+    this->sistema->administrar(inmobiliariaSeleccionada->getEmail(), inmuebleAdmin->getCodigo());
+
 }
 
 DTInmobiliaria* PantallaAdministrarPropiedad::seleccionarInmobiliaria(set<DTInmobiliaria*> inmobiliarias) {
@@ -48,4 +52,19 @@ DTInmobiliaria* PantallaAdministrarPropiedad::seleccionarInmobiliaria(set<DTInmo
 
     return nullptr;
 
+}
+
+DTInmueble *PantallaAdministrarPropiedad::seleccionarInmueble(set<DTInmueble *> inmuebles) {
+
+    int codigoIngresado;
+    cout << "Seleccione una inmueble (codigo): " << endl;
+    cin >> codigoIngresado;
+    for (auto inmueble: inmuebles) {
+        if (inmueble->getCodigo() == codigoIngresado) {
+            return inmueble;
+        }
+    }
+
+    cout << "Error: no se encontro el inmueble con codigo " << codigoIngresado << endl;
+    return nullptr;
 }

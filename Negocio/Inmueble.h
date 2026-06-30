@@ -47,6 +47,7 @@ public:
     void setAnioConstruccion(int AnioConstruccion);
     DTInmuebleAdministrado * creoDTInmuebleAdministrado();
     DTInmueble* creoDTInmueble();
+    void administro(Inmobiliaria * inmobiliaria);
 
 };
 

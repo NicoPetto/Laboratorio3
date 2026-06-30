@@ -79,3 +79,9 @@ DTInmueble *Inmueble::creoDTInmueble() {
     DTInmueble * Inm = new DTInmueble(this->getCodigo(), this->getDireccion(), this->getNumeroPuerta(), this->getSuperficie(), this->getAnioConstruccion(), propietario->getNombre());
     return Inm;
 }
+
+void Inmueble::administro(Inmobiliaria* inmobiliaria) {
+    DTFecha * fecha = new DTFecha(2021, 12, 24);
+    Administra * admin = new Administra(fecha, inmobiliaria);
+    listaAdministraciones.insert(admin);
+}

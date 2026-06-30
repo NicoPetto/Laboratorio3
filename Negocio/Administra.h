@@ -21,7 +21,8 @@ private:
     Inmueble* inmuebleAdministra;
 public:
     Administra();
-    Administra(DTFecha * fecha);
+    Administra(DTFecha * fecha, Inmobiliaria* inmobiliaria);
+    void setInmobiliaria(Inmobiliaria* inmobiliaria);
     Inmobiliaria* getInmobiliariaAdministra();
     Inmueble* getInmuebleAdministra();
     DTInmuebleAdministrado* obtenerAdministracion();

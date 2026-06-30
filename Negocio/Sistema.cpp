@@ -239,6 +239,20 @@ set<DTInmueble*> Sistema::obtenerInmueblesDePropietariosRepresentados(string mai
     return {};
 }
 
+void Sistema::administrar(string mail, int codigo) {
+
+    auto inmo = usuariosSistema.find(mail);
+    if (inmo != usuariosSistema.end()) {
+        Usuario* inm = inmo->second;
+        Inmobiliaria* i = dynamic_cast<Inmobiliaria*>(inm);
+        for (auto inmu : inmueblesSistema) {
+            if (inmu->getCodigo() == codigo) {
+                inmu->administro(i);
+            }
+        }
+    }
+}
+
 //AltaInmueble
 set<DTPropietario*> Sistema::obtenerPropietarios() {
 

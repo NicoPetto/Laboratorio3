@@ -4,12 +4,20 @@
 
 #include "Administra.h"
 
+#include <complex.h>
+
 Administra::Administra() {
 
 }
 
-Administra::Administra(DTFecha* fecha) {
+Administra::Administra(DTFecha* fecha, Inmobiliaria* inmobiliaria) {
     this->fecha = fecha;
+    inmobiliariaAdministra = inmobiliaria;
+
+}
+
+void Administra::setInmobiliaria(Inmobiliaria* inmobiliaria) {
+    inmobiliariaAdministra = inmobiliaria;
 }
 
 Inmobiliaria* Administra::getInmobiliariaAdministra() {

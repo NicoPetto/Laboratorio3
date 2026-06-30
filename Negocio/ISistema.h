@@ -63,7 +63,7 @@ class ISistema {
     //Administrar Propiedad
     //virtual set<DTInmobiliaria*> obtenerInmobiliarias() = 0;
     virtual set<DTInmueble*> obtenerInmueblesDePropietariosRepresentados(string mailInm) = 0;
-
+    virtual void administrar(string mail, int codigo) = 0;
 
 };
 
