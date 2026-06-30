@@ -7,10 +7,14 @@
 #include "Presentacion/PantallaRepresentarPropietario.h"
 #include "Presentacion/PantallaVerRepresentados.h"
 #include "Presentacion/PantallaAdministrarPropiedad.h"
-
+#include "Presentacion/Menu.h"
 
 
 int main() {
+
+    Menu * menu = new Menu();
+    menu->menuPrincipal();
+
 
     //PantallaAltaUsuario * pantallaAltaUsuario = new PantallaAltaUsuario();
     //pantallaAltaUsuario->mostrarPantallaAltaUsuario();
@@ -18,19 +22,19 @@ int main() {
     //PantallaVerUsuarios * pantallaVerUsuarios = new PantallaVerUsuarios();
     //pantallaVerUsuarios->mostrarPantallaVerUsuarios();
 
-    PantallaAltaInmueble * pantallaAltaInmueble = new PantallaAltaInmueble();
-    pantallaAltaInmueble->mostrarPantallaAltaInmueble();
+    //PantallaAltaInmueble * pantallaAltaInmueble = new PantallaAltaInmueble();
+    //pantallaAltaInmueble->mostrarPantallaAltaInmueble();
 
-    PantallaRepresentarPropietario * pantallaRepresentarPropietario = new PantallaRepresentarPropietario();
-    pantallaRepresentarPropietario->mostrarPantallaRepresentarPropietario();
+    //PantallaRepresentarPropietario * pantallaRepresentarPropietario = new PantallaRepresentarPropietario();
+    //pantallaRepresentarPropietario->mostrarPantallaRepresentarPropietario();
 
-    PantallaVerRepresentados * pantallaVerRepresentados = new PantallaVerRepresentados();
-    pantallaVerRepresentados->mostrarPantallaVerRepresentados();
+    //PantallaVerRepresentados * pantallaVerRepresentados = new PantallaVerRepresentados();
+    //pantallaVerRepresentados->mostrarPantallaVerRepresentados();
 
-    PantallaAdministrarPropiedad * pantallaAdministrarPropiedad = new PantallaAdministrarPropiedad();
+    /*PantallaAdministrarPropiedad * pantallaAdministrarPropiedad = new PantallaAdministrarPropiedad();
     pantallaAdministrarPropiedad->mostrarPantallaAdministrarPropiedad();
     pantallaAltaInmueble->mostrarPantallaAltaInmueble();
-    pantallaAdministrarPropiedad->mostrarPantallaAdministrarPropiedad();
+    pantallaAdministrarPropiedad->mostrarPantallaAdministrarPropiedad();*/
 
 
 
